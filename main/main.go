@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 // region Testify
 type Number interface {
@@ -36,15 +39,20 @@ func Multiplication[T Number](a T, b T) (result T) {
 
 // region Mock
 type Person struct {
-	name string
-	age  int
-	id   int
+	name        string
+	age         int
+	id          int
+	randEffects int
 }
 
 type MyPersonalStruct struct {
 	person  Person
 	f64Num  float64
 	message string
+}
+
+func getRandEffects() (res int) {
+	return rand.Intn(10)
 }
 
 func CheckEvenUsers(personalStruct MyPersonalStruct) (check bool) {
@@ -55,25 +63,27 @@ func CheckEvenUsers(personalStruct MyPersonalStruct) (check bool) {
 func main() {
 	myperson := MyPersonalStruct{
 		person: Person{
-			name: "John Doe",
-			age:  30,
-			id:   0,
+			name:        "John Doe",
+			age:         30,
+			id:          0,
+			randEffects: getRandEffects(),
 		},
 		f64Num:  35.5,
 		message: "Hello World",
 	}
-	fmt.Print(CheckEvenUsers(myperson), "\n")
+	fmt.Print(CheckEvenUsers(myperson), " RandEffect:", myperson.person.randEffects, "\n")
 
 	myperson = MyPersonalStruct{
 		person: Person{
-			name: "John Doe",
-			age:  30,
-			id:   2,
+			name:        "John Doe",
+			age:         30,
+			id:          2,
+			randEffects: getRandEffects(),
 		},
 		f64Num:  35.5,
 		message: "Hello World",
 	}
-	fmt.Print(CheckEvenUsers(myperson), "\n")
+	fmt.Print(CheckEvenUsers(myperson), " RandEffect:", myperson.person.randEffects, "\n")
 
 	mypersonSec := &myperson
 	myperson.person.id = 0
