@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-//region Testify
+// region Testify
 type Number interface {
 	int | float64
 }
@@ -14,6 +14,11 @@ func Sum[T Number](a T, b T) (result T) {
 
 func Minus[T Number](a T, b T) (result T) {
 	result = a - b
+	return result
+}
+
+func DivisionMod(a int, b int) (result int) {
+	result = a % b
 	return result
 }
 
@@ -29,9 +34,10 @@ func Multiplication[T Number](a T, b T) (result T) {
 
 //endregion
 
-//region Mock
+// region Mock
 type Person struct {
 	name string
+	age  int
 	id   int
 }
 
@@ -42,12 +48,35 @@ type MyPersonalStruct struct {
 }
 
 func CheckEvenUsers(personalStruct MyPersonalStruct) (check bool) {
-	if personalStruct.person.id/2 != 0 {
-
-	}
+	return (personalStruct.person.id/2 != 0)
 }
 
-//endregion
+// endregion
 func main() {
-	fmt.Print(Sum(3, 4))
+	myperson := MyPersonalStruct{
+		person: Person{
+			name: "John Doe",
+			age:  30,
+			id:   0,
+		},
+		f64Num:  35.5,
+		message: "Hello World",
+	}
+	fmt.Print(CheckEvenUsers(myperson), "\n")
+
+	myperson = MyPersonalStruct{
+		person: Person{
+			name: "John Doe",
+			age:  30,
+			id:   2,
+		},
+		f64Num:  35.5,
+		message: "Hello World",
+	}
+	fmt.Print(CheckEvenUsers(myperson), "\n")
+
+	mypersonSec := &myperson
+	myperson.person.id = 0
+	fmt.Print(CheckEvenUsers(*mypersonSec), "\n")
+	fmt.Print(CheckEvenUsers(myperson), "\n")
 }
