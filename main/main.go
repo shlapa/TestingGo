@@ -20,7 +20,7 @@ func Minus[T Number](a T, b T) (result T) {
 	return result
 }
 
-func DivisionMod(a int, b int) (result int) {
+func ModDivision(a int, b int) (result int) {
 	result = a % b
 	return result
 }
@@ -42,7 +42,7 @@ type Person struct {
 	name        string
 	age         int
 	id          int
-	randEffects int
+	randEffects standardRand
 }
 
 type MyPersonalStruct struct {
@@ -51,7 +51,13 @@ type MyPersonalStruct struct {
 	message string
 }
 
-func getRandEffects() (res int) {
+type randNumberGenerator interface {
+	getRandEffects() int
+}
+
+type standardRand struct{}
+
+func (strand standardRand) getRandEffects() (res int) {
 	return rand.Intn(10)
 }
 

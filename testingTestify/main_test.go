@@ -65,5 +65,5 @@ func TestMultiplicationIntDouble(t *testing.T) {
 
 // Mod DivisionMod Test
 func TestDivisionMod(t *testing.T) {
-	assert.Equal(t, 0, DivisionMod(10, 5))
+	assert.Equal(t, 0, ModDivision(10, 5))
 }
