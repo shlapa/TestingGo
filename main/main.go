@@ -38,11 +38,17 @@ func Multiplication[T Number](a T, b T) (result T) {
 //endregion
 
 // region Mock
+type randNumberGenerator interface {
+	getRandEffects() int
+}
+
+var RandNumberGenerator = standardRand{}
+
 type Person struct {
 	name        string
 	age         int
 	id          int
-	randEffects standardRand
+	randEffects int
 }
 
 type MyPersonalStruct struct {
@@ -51,13 +57,9 @@ type MyPersonalStruct struct {
 	message string
 }
 
-type randNumberGenerator interface {
-	getRandEffects() int
-}
-
 type standardRand struct{}
 
-func (strand standardRand) getRandEffects() (res int) {
+func (standard standardRand) getRandEffects() (res int) {
 	return rand.Intn(10)
 }
 
@@ -72,7 +74,7 @@ func main() {
 			name:        "John Doe",
 			age:         30,
 			id:          0,
-			randEffects: getRandEffects(),
+			randEffects: RandNumberGenerator.getRandEffects(),
 		},
 		f64Num:  35.5,
 		message: "Hello World",
@@ -84,7 +86,7 @@ func main() {
 			name:        "John Doe",
 			age:         30,
 			id:          2,
-			randEffects: getRandEffects(),
+			randEffects: RandNumberGenerator.getRandEffects(),
 		},
 		f64Num:  35.5,
 		message: "Hello World",
