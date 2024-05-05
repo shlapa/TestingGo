@@ -59,7 +59,7 @@ type MyPersonalStruct struct {
 
 type standardRand struct{}
 
-func (standard standardRand) getRandEffects() (res int) {
+func (standard standardRand) GetRandEffects() (res int) {
 	return rand.Intn(10)
 }
 
@@ -74,7 +74,7 @@ func main() {
 			name:        "John Doe",
 			age:         30,
 			id:          0,
-			randEffects: RandNumberGenerator.getRandEffects(),
+			randEffects: RandNumberGenerator.GetRandEffects(),
 		},
 		f64Num:  35.5,
 		message: "Hello World",
@@ -86,7 +86,7 @@ func main() {
 			name:        "John Doe",
 			age:         30,
 			id:          2,
-			randEffects: RandNumberGenerator.getRandEffects(),
+			randEffects: RandNumberGenerator.GetRandEffects(),
 		},
 		f64Num:  35.5,
 		message: "Hello World",
