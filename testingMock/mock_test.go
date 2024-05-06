@@ -59,8 +59,8 @@ func TestFirstRandMock(t *testing.T) {
 	if person.randEffects != 6 {
 		t.Errorf("Expected 6, got %d", person.randEffects)
 	}
-	
-	if(CheckEvenUsers.)
+
+	//if(CheckEvenUsers()!=)
 
 	fmt.Println(mypersonMock)
 }

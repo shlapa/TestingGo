@@ -1,33 +1,10 @@
-package testingTestify
+package main
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
-
-type Number interface {
-	int | float64
-}
-
-func Sum[T Number](a T, b T) (result T) {
-	result = a + b
-	return result
-}
-
-func Minus[T Number](a T, b T) (result T) {
-	result = a - b
-	return result
-}
-
-func Division[T Number](a T, b T) (result T) {
-	result = a / b
-	return result
-}
-
-func Multiplication[T Number](a T, b T) (result T) {
-	result = a * b
-	return result
-}
 
 // With Int
 func TestSumInt(t *testing.T) {

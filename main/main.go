@@ -7,7 +7,7 @@ import (
 
 // region Testify
 type Number interface {
-	int | float64
+	int | float64 | float32 | byte
 }
 
 func Sum[T Number](a T, b T) (result T) {
